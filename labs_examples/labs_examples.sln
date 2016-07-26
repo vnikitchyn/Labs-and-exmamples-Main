@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialize", "..\..\..\..\C#
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityEx", "..\..\..\..\C#\projects\EntityEx\EntityEx\EntityEx.csproj", "{FD298E91-D185-49A0-8F91-37560710D7B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{C5A7971D-4AE7-4312-A688-B636A4E8BB3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F902721-ED59-4F33-9B9E-6D93D2C55548} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
+		{0B03DCC5-C8BF-4922-A7DB-8C283F208647} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
+		{FD298E91-D185-49A0-8F91-37560710D7B8} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
 	EndGlobalSection
 EndGlobal
