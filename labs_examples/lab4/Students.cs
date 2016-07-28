@@ -16,7 +16,7 @@ namespace lab4
         public int id { get; set;}
         public string Name { get; set; }
         public string Group { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
         public string AvgGrade { get; set; }
     }
 }

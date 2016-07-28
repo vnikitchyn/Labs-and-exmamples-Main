@@ -10,40 +10,81 @@ namespace lab4
 {
     internal static class SQLOperations
     {
-        internal static void Query()
+        internal static void QueryAll(string path, string firstLetter)
         {
             using (var db = new DbcontextSt())
             {
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Students));
-                Stream fileStream1 = new FileStream(@"D:\Vick\CSharp\tempis\student1ver.json", FileMode.Create);
+                Stream fileStream1 = new FileStream(path, FileMode.Create);
 
-                Console.WriteLine("Native SQL query");
-                var allStudents = db.Students.SqlQuery("SELECT * FROM Students");
-                foreach (var student in allStudents)
-                {
-                    Console.WriteLine("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}",student.id,student.Name,student.Number,student.Group);
-                    serializer.WriteObject(fileStream1, student);
-                }
+                // "Native SQL query" - left as example for me
+                //var allStudents = db.Students.SqlQuery("SELECT * FROM Students");
+                //foreach (var student in allStudents)
+                //{
+                //    Console.WriteLine("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}",student.id,student.Name,student.Number,student.Group);
+                //    serializer.WriteObject(fileStream1, student);
+                //}
 
-                Console.WriteLine("Linq query");
+
+                Console.WriteLine("You are reading via Linq query Students");
                 List <Students> allLinqStudents = db.Students.ToList<Students>();
-                    var allLinqStudents2 = from lSt in allLinqStudents
-                                           select 1St;
 
-                foreach (var student in allLinqStudents)
+                var allLinqStudents2 = from lstud in allLinqStudents
+                                     where lstud.Name.StartsWith(firstLetter)
+                                    group lstud by lstud.Group into lstud2
+                                       orderby lstud2.Key
+                                           select lstud2;
+
+                foreach (Students student in allLinqStudents2)
                 {
                     Console.WriteLine("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}", student.id, student.Name, student.Number, student.Group);
+                    serializer.WriteObject(fileStream1, student);
                 }
                 fileStream1.Close();
             }
         }
 
-        internal static void Add()
+        internal static void AddInintial()
         {
             using (var db = new DbcontextSt())
             {
-                var student1 = new Students() { Name = "Bill Gates", Group = "MS", Number = "1",AvgGrade="absolute"};
-                db.Students.Add(student1);
+                var student1 = new Students() { Name = "Bill Gates", Group = "MS", Number = 14456,AvgGrade="absolute"};
+                var student2 = new Students() { Name = "Alicia Nogates", Group = "MS", Number = 55454, AvgGrade = "average" };
+                var student3 = new Students() { Name = "Alex Wozniak", Group = "Apple", Number = 4444, AvgGrade = "absolute" };
+                var student4 = new Students() { Name = "Anton Nebeda", Group = "MS", Number = 44, AvgGrade = "advance" };
+                var student5 = new Students() { Name = "Ashot Obeda", Group = "Apple", Number = 144556, AvgGrade = "intermediate" };
+                var student6 = new Students() { Name = "Nemo Beda", Group = "MS", Number = 545745, AvgGrade = "beginner" };
+                db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
+                db.SaveChanges();
+            }
+        }
+
+
+
+        internal static void Remove(int num)
+        {
+            using (var db = new DbcontextSt())
+            {
+                List<Students> allDbStudents = db.Students.ToList<Students>();
+                var filteredStuds = from st in allDbStudents
+                                    where st.Number == num
+                                    select st;
+                foreach (Students st in filteredStuds)
+                {
+                    db.Students.Remove(st);
+                }
+                db.SaveChanges();
+            }
+        }
+
+
+
+        internal static void Add(string name, string group, int num, string grade)
+        {
+            using (var db = new DbcontextSt())
+            {
+                var student = new Students() { Name = name, Group = group, Number = num, AvgGrade = grade };
+                db.Students.Add(student);
                 db.SaveChanges();
             }
         }
@@ -57,18 +98,19 @@ namespace lab4
                     try
                     {
                         var Students = db.Students.ToList<Students>();
-                        Console.WriteLine("Add new subject");
-                        db.Students.Add(new Subject { Name = "History", SubjectId = 3 });
+                        Console.WriteLine("Adding new studik Nick from Google");
+                        Add("Nick","Google",123423,"pre-absolute");
                         db.SaveChanges();
 
-                        Console.WriteLine("Update existing subject");
-                        var subjectToUpdate = db.Students.Where(s => s.SubjectId == 2).FirstOrDefault<Subject>();
+                        Console.WriteLine("Update existing stud");
+                        var subjectToUpdate = db.Students.Where(s => s.Name.Contains("Beda")).FirstOrDefault<Students>();
                         db.SaveChanges();
                         dbTransaction.Commit();
                     }
                     catch (Exception ex)
                     {
                         dbTransaction.Rollback();
+                        Console.WriteLine("transact roolled out. Except: "+ex);
                     }
                 }
             }
