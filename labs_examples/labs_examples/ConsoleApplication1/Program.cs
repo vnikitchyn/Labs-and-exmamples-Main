@@ -13,6 +13,9 @@ namespace AdoNetExample
         static void Main(string[] args)
         {
             Lab.SQLOperations();
+            Console.WriteLine("Dis..");
+            Lab.Disonnected();
+            Console.ReadKey();
             //            Connected();
         }
 

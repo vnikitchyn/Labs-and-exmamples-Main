@@ -57,8 +57,7 @@ namespace lab4
                 var student4 = new Students() { Name = "Anton Nebeda", Group = "MS", Number = 44, AvgGrade = "advance" };
                 var student5 = new Students() { Name = "Ashot Obeda", Group = "Apple", Number = 144556, AvgGrade = "intermediate" };
                 var student6 = new Students() { Name = "Nemo Beda", Group = "MS", Number = 545745, AvgGrade = "beginner" };
-//                db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
-
+//              db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
                 db.Students.Add(student1 );
                 db.SaveChanges();
             }
@@ -66,9 +65,9 @@ namespace lab4
 
         internal static void Alt()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["NORTHWIND"].ConnectionString;
-
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Categories; SELECT * FROM Products", connectionString);
+            //var connectionString = ConfigurationManager.ConnectionStrings["NORTHWIND"].ConnectionString;
+            var connectionString2 = "Data source=USER-PC\\SQLEXP2014; Initial Catalog = NORTHWIND; Integrated Security = SSPI";
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Categories; SELECT * FROM Products", connectionString2);
             System.Data.DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             foreach (DataRow row in dataSet.Tables[0].Rows)
