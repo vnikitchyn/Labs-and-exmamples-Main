@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 // [id],[Name],[Group],[Number],[AvgGrade]
 namespace lab4
 {
-    [Table("Students")]
-    class Students
+   [Table("Students")]
+  public  class Students
     {
         [Key]
         public int id { get; set;}

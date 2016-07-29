@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -54,11 +57,28 @@ namespace lab4
                 var student4 = new Students() { Name = "Anton Nebeda", Group = "MS", Number = 44, AvgGrade = "advance" };
                 var student5 = new Students() { Name = "Ashot Obeda", Group = "Apple", Number = 144556, AvgGrade = "intermediate" };
                 var student6 = new Students() { Name = "Nemo Beda", Group = "MS", Number = 545745, AvgGrade = "beginner" };
-                db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
+//                db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
+
+                db.Students.Add(student1 );
                 db.SaveChanges();
             }
         }
 
+        internal static void Alt()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["NORTHWIND"].ConnectionString;
+
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Categories; SELECT * FROM Products", connectionString);
+            System.Data.DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                int categoryId = (int)row[0];
+                string categoryName = row[1].ToString();
+                string description = row[2].ToString();
+                Console.WriteLine("{0}, {1}, {2}", categoryId, categoryName, description);
+            }
+        }
 
 
         internal static void Remove(int num)

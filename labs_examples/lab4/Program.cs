@@ -46,6 +46,11 @@ namespace lab4
                     keyword = Console.ReadLine();
                     break;
 
+                case ("alt"):
+                    Alt();
+                    keyword = Console.ReadLine();
+                    break;
+
                 default:
                     Console.Write("u exited from app");
                     break;
