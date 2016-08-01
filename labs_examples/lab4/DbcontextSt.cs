@@ -9,6 +9,7 @@ namespace lab4
 {
     class DbcontextSt:DbContext
     {
-            public DbSet <Students> Students { get; set; }  
+            public DbSet <Students> Students { get; set; }
+            public DbSet <Group> Groups { get; set; }
     }
 }

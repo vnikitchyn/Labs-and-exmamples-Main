@@ -13,10 +13,35 @@ namespace lab4
   public  class Students
     {
         [Key]
-        public int id { get; set;}
+        public int Id { get; set;}
         public string Name { get; set; }
-        public string Group { get; set; }
+        public string Surname { get; set; }
         public int Number { get; set; }
-        public string AvgGrade { get; set; }
+        public double AvgGrade { get; set; }
+        public enum Budget { yes, no }
+        public Budget budgetStatus;
+
+        public int GroupID { get; set; }
+        [ForeignKey ("GroupID")]
+        public Group Group { get; set; }
+
+        public Students() { }
+
+        public Students(Group group,  string name, string surname , int number, double avgGrade, Budget budg) {
+            Group = group;
+            Name = name;
+            Surname = surname;
+            Number = number;
+            AvgGrade = avgGrade;
+            budgetStatus = budg;
+            GroupID = Group.Id;
+        }
+
+        override public string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Name +" ").Append(Surname+"\t").Append("Number "+Number).Append("Grade: "+AvgGrade).Append("\ton budget: "+ budgetStatus).Append("\tGroup: "+ Group.Name);
+            return sb.ToString();
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using static lab4.Students;
 
 namespace lab4
 {
@@ -28,7 +29,6 @@ namespace lab4
                 //    serializer.WriteObject(fileStream1, student);
                 //}
 
-
                 Console.WriteLine("You are reading via Linq query Students");
                 List <Students> allLinqStudents = db.Students.ToList<Students>();
 
@@ -40,7 +40,7 @@ namespace lab4
 
                 foreach (Students student in allLinqStudents2)
                 {
-                    Console.WriteLine("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}", student.id, student.Name, student.Number, student.Group);
+                    Console.WriteLine("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}", student.Group.ToString(), student.Name, student.Number, student.Group);
                     serializer.WriteObject(fileStream1, student);
                 }
                 fileStream1.Close();
@@ -51,33 +51,36 @@ namespace lab4
         {
             using (var db = new DbcontextSt())
             {
-                var student1 = new Students() { Name = "Bill Gates", Group = "MS", Number = 14456,AvgGrade="absolute"};
-                var student2 = new Students() { Name = "Alicia Nogates", Group = "MS", Number = 55454, AvgGrade = "average" };
-                var student3 = new Students() { Name = "Alex Wozniak", Group = "Apple", Number = 4444, AvgGrade = "absolute" };
-                var student4 = new Students() { Name = "Anton Nebeda", Group = "MS", Number = 44, AvgGrade = "advance" };
-                var student5 = new Students() { Name = "Ashot Obeda", Group = "Apple", Number = 144556, AvgGrade = "intermediate" };
-                var student6 = new Students() { Name = "Nemo Beda", Group = "MS", Number = 545745, AvgGrade = "beginner" };
-//              db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
-                db.Students.Add(student1 );
+                var group1 = new Group("MS");
+                var group2 = new Group("Apple");
+                var group3 = new Group("Lego");
+
+                var student1 = new Students(group1, "Bill", "Gates", 1, 5.0,Budget.yes);
+                var student2 = new Students(group2, "Alicia", "Nogates", 2, 3.4, Budget.yes);
+                var student3 = new Students(group2, "Andy", "Wozniak", 42, 5.0, Budget.yes);
+                var student4 = new Students(group3, "Anton", "Nebeda", 334, 4.4, Budget.yes);
+                var student5 = new Students(group3, "Ashot", "Obeda", 12, 4.3, Budget.no);
+                var student6 = new Students(group1, "Nemo", "Beda", 984, 3.4, Budget.no);
+                db.Students.AddRange(new Students [] { student1, student2, student3, student4, student5, student6 });
                 db.SaveChanges();
             }
         }
 
-        internal static void Alt()
-        {
-            //var connectionString = ConfigurationManager.ConnectionStrings["NORTHWIND"].ConnectionString;
-            var connectionString2 = "Data source=USER-PC\\SQLEXP2014; Initial Catalog = NORTHWIND; Integrated Security = SSPI";
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Categories; SELECT * FROM Products", connectionString2);
-            System.Data.DataSet dataSet = new DataSet();
-            adapter.Fill(dataSet);
-            foreach (DataRow row in dataSet.Tables[0].Rows)
-            {
-                int categoryId = (int)row[0];
-                string categoryName = row[1].ToString();
-                string description = row[2].ToString();
-                Console.WriteLine("{0}, {1}, {2}", categoryId, categoryName, description);
-            }
-        }
+        //internal static void Alt()
+        //{
+        //    //var connectionString = ConfigurationManager.ConnectionStrings["NORTHWIND"].ConnectionString;
+        //    var connectionString2 = "Data source=USER-PC\\SQLEXP2014; Initial Catalog = NORTHWIND; Integrated Security = SSPI";
+        //    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Categories; SELECT * FROM Products", connectionString2);
+        //    System.Data.DataSet dataSet = new DataSet();
+        //    adapter.Fill(dataSet);
+        //    foreach (DataRow row in dataSet.Tables[0].Rows)
+        //    {
+        //        int categoryId = (int)row[0];
+        //        string categoryName = row[1].ToString();
+        //        string description = row[2].ToString();
+        //        Console.WriteLine("{0}, {1}, {2}", categoryId, categoryName, description);
+        //    }
+        //}
 
 
         internal static void Remove(int num)
@@ -96,13 +99,12 @@ namespace lab4
             }
         }
 
-
-
-        internal static void Add(string name, string group, int num, string grade)
+        internal static void Add(string name, string surname, string groupname, int num, double grade, Budget b)
         {
             using (var db = new DbcontextSt())
             {
-                var student = new Students() { Name = name, Group = group, Number = num, AvgGrade = grade };
+                Group group = new Group(groupname);
+                var student = new Students (group,name,surname,num,grade,b);
                 db.Students.Add(student);
                 db.SaveChanges();
             }
@@ -118,7 +120,7 @@ namespace lab4
                     {
                         var Students = db.Students.ToList<Students>();
                         Console.WriteLine("Adding new studik Nick from Google");
-                        Add("Nick","Google",123423,"pre-absolute");
+                        Add("Nick","Eh","Apple", 233454, 4.9, 0);
                         db.SaveChanges();
 
                         Console.WriteLine("Update existing stud");
