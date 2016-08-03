@@ -52,7 +52,10 @@ namespace lab4
         override public string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(Name +" ").Append(Surname+"\t").Append("Number "+Number).Append("Grade: "+AvgGrade).Append("\ton budget: "+ budgetStatus).Append("\tGroup: "+ Group.Name);
+            if (Group!=null)
+            sb.Append(Name +" ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: "+AvgGrade).Append("\ton budget: "+ budgetStatus).Append("\tGroup: "+ Group.Name);
+            else
+            sb.Append(Name + " ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: " + AvgGrade).Append("\ton budget: " + budgetStatus).Append("\tGroup is null yet");
             return sb.ToString();
         }
     }

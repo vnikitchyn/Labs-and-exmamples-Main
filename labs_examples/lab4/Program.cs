@@ -26,12 +26,12 @@ namespace lab4
                     keyword = Console.ReadLine();
                     break;
 
-                case ("query"):
-                    Console.Write("Enetr fist letter of ame");
-                    keyword = Console.ReadLine();
-                    QueryAll(@"G:\Works\C#\trash\student1ver.json", keyword);
-                    keyword = Console.ReadLine();
-                    break;          
+                //case ("query"):
+                //    Console.Write("Enetr fist letter of ame");
+                //    keyword = Console.ReadLine();
+                //    QueryAll(@"G:\Works\C#\trash\student1ver.json", keyword);
+                //    keyword = Console.ReadLine();
+                //    break;          
 
                 case ("del"):
                     Console.Write("Enter number (not id) of stud to delete");

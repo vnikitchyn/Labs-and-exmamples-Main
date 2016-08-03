@@ -11,8 +11,7 @@ using System.Windows.Forms;
 namespace lab4
 {
     public partial class FromL1 : Form
-    {
-        
+    {        
         public FromL1()
         {
             InitializeComponent();
@@ -20,8 +19,27 @@ namespace lab4
 
         private void FromL1_Load(object sender, EventArgs e)
         {
+            using (var db = new DbcontextSt()) {
+//               listBox1.DataSource = db.Students.ToList();
 
+                listBox1.DataSource = SQLOperations.QueryAllSt();
+                listBox1.DisplayMember ="Name";
+                textBox1.Text = SQLOperations.QueryAllSt().ToString();
+
+
+                listBox1.SelectedValueChanged +=
+                new EventHandler(listBox1_SelectedValueChanged);
+            }                 
         }
+
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+            {
+                textBox1.Text = listBox1.SelectedValue.ToString();
+            }
+        }
+
 
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -59,7 +77,7 @@ namespace lab4
         private void button5_Click(object sender, EventArgs e)
         {
             SQLOperations.AddInintial();
-            Info = SQLOperations.InfoSQL;
+            textBox1.Text = SQLOperations.InfoSQL;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

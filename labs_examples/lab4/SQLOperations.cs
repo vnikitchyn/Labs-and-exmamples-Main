@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static lab4.Students;
 
 namespace lab4
@@ -16,12 +18,12 @@ namespace lab4
     internal static class SQLOperations
     {
         public static string InfoSQL { get; set; }
-        internal static void QueryAll(string path, string firstLetter)
+        internal static void QueryStbyFisrtLetter(string firstLetter)
         {
             using (var db = new DbcontextSt())
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Students));
-                Stream fileStream1 = new FileStream(path, FileMode.Create);
+                //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Students));
+                //Stream fileStream1 = new FileStream(path, FileMode.Create);
 
                 // "Native SQL query" - left as example for me
                 //var allStudents = db.Students.SqlQuery("SELECT * FROM Students");
@@ -43,9 +45,25 @@ namespace lab4
                 foreach (Students student in allLinqStudents2)
                 {
                     InfoSQL = string.Format("id:{0}\tname:{1}\tnumber:{2}\tgroup:{3}", student.Group.ToString(), student.Name, student.Number, student.Group);
-                    serializer.WriteObject(fileStream1, student);
+                    
+            //        serializer.WriteObject(fileStream1, student);
                 }
-                fileStream1.Close();
+                //fileStream1.Close();
+            }
+        }
+
+        internal static List<dynamic> QueryAllSt()
+        {
+            using (var db = new DbcontextSt())
+            {
+                List<Students> allS = db.Students.ToList<Students>();
+                List<Group> allG = db.Groups.ToList<Group>();
+
+                IEnumerable<dynamic> allSG = from gr in allG
+                            join st in allS
+                            on gr.Id equals st.GroupID
+                            select new { Name = st.Name, Surname = st.Surname, st.Number, Group = gr.Name };
+                return allSG.ToList();
             }
         }
 
@@ -134,7 +152,6 @@ namespace lab4
         {
             AddStudents(new Students[] { studs} );
         }
-
 
 
         internal static void AddStudent(string name, string surname, string groupname, int num, double grade, Budget b)

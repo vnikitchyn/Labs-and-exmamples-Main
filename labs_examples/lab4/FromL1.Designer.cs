@@ -56,6 +56,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -165,7 +166,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(255, 289);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 17);
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "onBudget";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -189,7 +190,7 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // textBox1 
+            // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Multiline = true;
@@ -198,13 +199,21 @@
             this.textBox1.Size = new System.Drawing.Size(340, 53);
             this.textBox1.TabIndex = 17;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-   
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 308);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 18;
             // 
             // FromL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 373);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.listBox1);
@@ -245,7 +254,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox1;
-
-      
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
