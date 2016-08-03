@@ -37,6 +37,18 @@ namespace lab4
             GroupID = Group.Id;
         }
 
+
+        public Students(Group group, string name, string surname, int number, double avgGrade, Budget budg, int gropId)
+        {
+            Group = group;
+            Name = name;
+            Surname = surname;
+            Number = number;
+            AvgGrade = avgGrade;
+            budgetStatus = budg;
+            GroupID = gropId;
+        }
+
         override public string ToString()
         {
             StringBuilder sb = new StringBuilder();

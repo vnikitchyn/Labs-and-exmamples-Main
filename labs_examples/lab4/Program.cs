@@ -38,14 +38,14 @@ namespace lab4
                     keyword = Console.ReadLine();
                     int num;
                     int.TryParse(keyword, out num);
-                    Remove(num);
+                    RemoveStudent(num);
                     keyword = Console.ReadLine();
                     break;
 
-                case ("transact"):
-                    Transact();
-                    keyword = Console.ReadLine();
-                    break;
+                //case ("transact"):
+                //    Transact();
+                //    keyword = Console.ReadLine();
+                //    break;
 
                 default:
                     Console.Write("u exited from app");

@@ -12,6 +12,7 @@ namespace lab4
 {
     public partial class FromL1 : Form
     {
+        
         public FromL1()
         {
             InitializeComponent();
@@ -58,9 +59,15 @@ namespace lab4
         private void button5_Click(object sender, EventArgs e)
         {
             SQLOperations.AddInintial();
+            Info = SQLOperations.InfoSQL;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
