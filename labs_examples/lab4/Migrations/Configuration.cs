@@ -10,7 +10,6 @@ namespace lab4.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "lab4.DbcontextSt";
         }
 
         protected override void Seed(lab4.DbcontextSt context)

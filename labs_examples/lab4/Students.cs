@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 // [id],[Name],[Group],[Number],[AvgGrade]
 namespace lab4
 {
-   [Table("Students")]
+    public enum Budget { yes, no }
+
+    [Table("Students")]
   public  class Students
     {
         [Key]
@@ -18,8 +20,9 @@ namespace lab4
         public string Surname { get; set; }
         public int Number { get; set; }
         public double AvgGrade { get; set; }
-        public enum Budget { yes, no }
-        public Budget budgetStatus;
+
+        [Column("budgeted")]
+        public Budget budgetStatus { get; set; }
 
         public int GroupID { get; set; }
         [ForeignKey ("GroupID")]
@@ -58,5 +61,17 @@ namespace lab4
             sb.Append(Name + " ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: " + AvgGrade).Append("\ton budget: " + budgetStatus).Append("\tGroup is null yet");
             return sb.ToString();
         }
+
+
+         public string ToStringNames()
+        {
+            StringBuilder sb = new StringBuilder();
+                sb.Append(Name + " ").Append(Surname + "\t");
+            return sb.ToString();
+        }
+
+
+
+
     }
 }

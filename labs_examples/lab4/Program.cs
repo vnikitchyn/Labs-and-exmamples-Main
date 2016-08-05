@@ -15,6 +15,30 @@ namespace lab4
             Wellcome();
         }
 
+
+
+        static void Wellcome()
+        {
+            string wellcome = "";
+            string caption = "lab info";
+            var choice1 = MessageBox.Show(wellcome + "\nPlease choose application format: window-style(YES) or console(NO)", caption, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (choice1 == DialogResult.No)
+            {
+                Console.Title = "lab 4 + form";
+                Console.WindowWidth = 100;
+                string input = Console.ReadLine();
+                Switch(input);
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);               
+                Application.Run(new FromL1());
+            }
+        }
+
+
         static void Switch(string input)
         {
             Console.WriteLine("possible options:n init\nqury\nadd\ndel\ntransact");
@@ -53,26 +77,8 @@ namespace lab4
             }
         }
 
-        static void Wellcome()
-        {
-            string wellcome = "";
-            string caption = "lab info";
-            var choice1 = MessageBox.Show(wellcome + "\nPlease choose application format: window-style(YES) or console(NO)", caption, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-            if (choice1 == DialogResult.No)
-            {
-                Console.Title = "lab 4 + form";
-                Console.WindowWidth = 100;
-                string input = Console.ReadLine();
-                Switch(input);
-            }
-            else
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);               
-                Application.Run(new FromL1());
-            }
-        }
+
 
     }
 }

@@ -62,10 +62,25 @@ namespace lab4
                 IEnumerable<dynamic> allSG = from gr in allG
                             join st in allS
                             on gr.Id equals st.GroupID
-                            select new { Name = st.Name, Surname = st.Surname, st.Number, Group = gr.Name };
+                            select new { Name = st.Name, Surname = st.Surname, st.Number, AvgGrade = st.AvgGrade, Bud = st.budgetStatus,Group = gr.Name, FullName = string.Format("{0} {1}",  st.Name,st.Surname)};
                 return allSG.ToList();
             }
+           
         }
+
+        internal static List<string> QueryAllGroupNames()
+        {
+            using (var db = new DbcontextSt())
+            {
+                List<Group> allG = db.Groups.ToList<Group>();
+
+                IEnumerable<string> allSG = from  gr in allG
+                                             select  gr.Name;          
+                return allSG.ToList();
+            }
+
+        }
+
 
         internal static void AddInintial()
         {
@@ -216,9 +231,36 @@ namespace lab4
                     //{
                     //    id = group.Id;
                     //}
+                    if (groupNameL.FirstOrDefault()!= null)
                     id = groupNameL.FirstOrDefault().Id;
                 }
                 else InfoSQL = "Such group id is not found, returned '0'";                    
+                return id;
+            }
+        }
+
+
+        internal static int MaxStudentNumber ()
+        {
+            using (var db = new DbcontextSt())
+            {
+                int id = 0;
+                var sts = db.Students.ToList();
+                if (sts.Any())
+                {
+                    var stsl = from st in sts  
+                               orderby  st.Number descending                               
+                                     select st;
+
+                    id = stsl.FirstOrDefault().Number;
+                    InfoSQL = string.Format("student with max number '{0}': {1}",id,stsl.FirstOrDefault().ToStringNames());
+                }
+                else
+                {
+                    InfoSQL = "No one students here, Number is set as 1";
+                    id = 1;
+                }
+
                 return id;
             }
         }
