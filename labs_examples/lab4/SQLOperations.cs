@@ -304,7 +304,7 @@ namespace lab4
                 else InfoSQL = "Such group id is not found, returned '0'";                    
                 return id;
             }
-        }
+        } 
 
 
         internal static int MaxStudentNumber ()
