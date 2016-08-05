@@ -37,6 +37,7 @@ namespace lab4
             textBox4.ReadOnly = true;
             textBox5.Clear();
             textBox5.ReadOnly = true;
+            button6.Enabled = false;
             comboBox1.ResetText();
             comboBox1.Enabled = false;
             checkBox1.Enabled = false;
@@ -202,13 +203,23 @@ namespace lab4
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            comboBox1.ResetText();
+            comboBox1.Items.Clear();
+            comboBox1.Enabled = true;
+            comboBox1.Items.AddRange(QueryAllGroupNames().ToArray());
+            button6.Enabled = true;
         }
 
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {
             Button1AppearingFindOption();
             comboBox1.Text = StringWithoutNumbers(comboBox1.Text);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var st = (dynamic)listBox1.SelectedItem;
+            UpdateStudent2(st.Number,comboBox1.Text);
         }
     }
 }

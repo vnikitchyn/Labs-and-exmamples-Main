@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -188,6 +189,72 @@ namespace lab4
                 db.SaveChanges();
             }
         }
+
+        internal static Students FindStudent(int num)
+        {
+            using (var db = new DbcontextSt())
+            {
+                List<Students> allDbStudents = db.Students.ToList<Students>();
+                var filteredStuds = from st in allDbStudents
+                                    where st.Number == num
+                                    select st;
+              
+                return filteredStuds.First();
+                    }
+        }
+
+
+        internal static void UpdateStudent(int num, string groupname)
+        {
+            using (var db = new DbcontextSt())
+            {
+                Students studentA=FindStudent(num);
+                Students studentB = null;
+                int groupID = FindGroupId(groupname);
+
+                if (groupID > 0)
+                {
+                    studentB = new Students(null, studentA.Name, studentA.Surname, studentA.Number, studentA.AvgGrade, studentA.budgetStatus, groupID);
+                }
+
+                else
+                {
+                    studentB = new Students(new Group(groupname), studentA.Name, studentA.Surname, studentA.Number, studentA.AvgGrade, studentA.budgetStatus);
+                }
+                studentA = studentB;
+                studentB = null;
+                db.SaveChanges();
+                InfoSQL = string.Format("Updated {0}", studentA);
+            }
+        }
+
+        internal static void UpdateStudent2(int num, string groupname)
+        {
+
+            using (var db = new DbcontextSt())
+            {
+                Students studentA = FindStudent(num);
+                Students studentB = null;
+
+                int groupID = FindGroupId(groupname);
+
+                if (groupID > 0)
+                {
+                    studentB = new Students(null, studentA.Name, studentA.Surname, studentA.Number, studentA.AvgGrade, studentA.budgetStatus, groupID);
+                }
+
+                else
+                {
+                    studentB = new Students(new Group(groupname), studentA.Name, studentA.Surname, studentA.Number, studentA.AvgGrade, studentA.budgetStatus);
+                }
+                RemoveStudent(num);
+                db.Students.Add(studentB);               
+                db.SaveChanges();
+                InfoSQL = string.Format("Updated {0}", studentB);
+            }
+        }
+
+   
 
 
         internal static void AddGroup(string groupname)
