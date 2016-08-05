@@ -76,9 +76,5 @@ namespace lab4
                     break;
             }
         }
-
-
-
-
     }
 }

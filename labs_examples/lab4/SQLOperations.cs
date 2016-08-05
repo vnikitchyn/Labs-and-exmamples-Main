@@ -65,8 +65,7 @@ namespace lab4
                             on gr.Id equals st.GroupID
                             select new { Name = st.Name, Surname = st.Surname, st.Number, AvgGrade = st.AvgGrade, Bud = st.budgetStatus,Group = gr.Name, FullName = string.Format("{0} {1}",  st.Name,st.Surname)};
                 return allSG.ToList();
-            }
-           
+            }           
         }
 
         internal static List<string> QueryAllGroupNames()
@@ -79,7 +78,6 @@ namespace lab4
                                              select  gr.Name;          
                 return allSG.ToList();
             }
-
         }
 
 
@@ -103,9 +101,6 @@ namespace lab4
                 db.SaveChanges();
             }
         }
-
-
-
 
         internal static void RemoveStudent(int num)
         {
@@ -203,7 +198,6 @@ namespace lab4
                     }
         }
 
-
         internal static void UpdateStudent(int num, string groupname)
         {
             using (var db = new DbcontextSt())
@@ -224,7 +218,7 @@ namespace lab4
                 studentA = studentB;
                 studentB = null;
                 db.SaveChanges();
-                InfoSQL = string.Format("Updated {0}", studentA);
+                InfoSQL = string.Format("Updated {0}, new group: {1}", studentA, groupname);
             }
         }
 
@@ -253,10 +247,7 @@ namespace lab4
                 InfoSQL = string.Format("Updated {0}", studentB);
             }
         }
-
    
-
-
         internal static void AddGroup(string groupname)
         {
             bool find=false;

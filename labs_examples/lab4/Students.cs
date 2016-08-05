@@ -58,7 +58,7 @@ namespace lab4
             if (Group!=null)
             sb.Append(Name +" ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: "+AvgGrade).Append("\ton budget: "+ budgetStatus).Append("\tGroup: "+ Group.Name);
             else
-            sb.Append(Name + " ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: " + AvgGrade).Append("\ton budget: " + budgetStatus).Append("\tGroup is null yet");
+            sb.Append(Name + " ").Append(Surname+"\t").Append('№'+ Number).Append("\tGrade: " + AvgGrade).Append("\ton budget: " + budgetStatus);
             return sb.ToString();
         }
 

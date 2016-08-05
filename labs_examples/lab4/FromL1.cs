@@ -20,7 +20,6 @@ namespace lab4
             Loading();
         }
 
-
         private void Loading ()
         {
             List<dynamic> studs = QueryAllSt();
@@ -31,6 +30,7 @@ namespace lab4
             }
             listBox1.Visible = true;
             DeleteAppearing();
+            button2.Enabled = true;
             button3.Enabled = true;
             textBox3.ReadOnly = true;
             textBox4.Clear();
@@ -42,11 +42,11 @@ namespace lab4
             comboBox1.Enabled = false;
             checkBox1.Enabled = false;
             checkBox1.CheckState = CheckState.Unchecked;
-       //     button4.Enabled = false;
+     //     button4.Enabled = false;
 
             listBox1.DataSource = studs;
             listBox1.ValueMember = "Name";
-
+            listBox1.SelectedItem = null;
             listBox1.DisplayMember = "FullName";
             listBox1.ClearSelected();
             textBox1.Clear();
@@ -75,16 +75,6 @@ namespace lab4
         }
 
 
-        private void button1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Button1AppearingFindOption() //Save button
         {
             if (!textBox3.Text.Replace(" ", string.Empty).Equals("") && !textBox4.Text.Replace(" ", string.Empty).Equals("") && !textBox5.Text.Replace(" ", string.Empty).Equals("") && !comboBox1.Text.Replace(" ", string.Empty).Equals("")&&listBox1.SelectedItem==null)
@@ -103,16 +93,6 @@ namespace lab4
         }
 
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e) //name
         {
             Button1AppearingFindOption();
@@ -124,16 +104,6 @@ namespace lab4
             //AddInintial();
             //textBox1.Text = InfoSQL;
             Loading();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -165,15 +135,8 @@ namespace lab4
             Button1AppearingFindOption();
         }
 
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e) //create
-        {
-        
+        {        
             listBox1.ClearSelected();
             listBox1.DataSource = null;
             listBox1.Visible = false;
@@ -197,8 +160,17 @@ namespace lab4
         private void button4_Click(object sender, EventArgs e) //delete
         {
             var st = (dynamic)listBox1.SelectedItem;
-            RemoveStudent(st.Number);
-            textBox1.Text = InfoSQL;
+            DialogResult deleteIt = MessageBox.Show("You are going to delete the record, please confirm this action","Lab4 app",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (deleteIt == DialogResult.Yes)
+            {
+                RemoveStudent(st.Number);
+                textBox1.Text = InfoSQL;
+            }
+            else
+            {
+                Loading();
+                textBox1.Text = InfoSQL;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -208,6 +180,9 @@ namespace lab4
             comboBox1.Enabled = true;
             comboBox1.Items.AddRange(QueryAllGroupNames().ToArray());
             button6.Enabled = true;
+            button4.Enabled = false;
+            button3.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void comboBox1_TextUpdate(object sender, EventArgs e)
@@ -219,7 +194,9 @@ namespace lab4
         private void button6_Click(object sender, EventArgs e)
         {
             var st = (dynamic)listBox1.SelectedItem;
-            UpdateStudent2(st.Number,comboBox1.Text);
+            UpdateStudent(st.Number,comboBox1.Text);
+            Loading();
+            textBox1.Text=InfoSQL;
         }
     }
 }
