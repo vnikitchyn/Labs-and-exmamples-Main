@@ -104,6 +104,13 @@ namespace lab4
             //AddInintial();
             //textBox1.Text = InfoSQL;
             Loading();
+            //listBox1.SelectedItem = null;
+            //listBox1.ClearSelected();
+            textBox3.Text = null;
+            textBox1.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            comboBox1.Text = null;
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
