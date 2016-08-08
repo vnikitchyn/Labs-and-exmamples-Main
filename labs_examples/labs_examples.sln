@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{C5A7971D-4AE7-4312-A688-B636A4E8BB3B}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab4", "lab4\lab4.csproj", "{63505B3F-592D-478D-8248-FA6DF2497578}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrExample", "EntityFrExample\EntityFrExample.csproj", "{BDB30ABA-6EC2-47AC-9FC1-C004CE396BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLab5", "WpfLab5\WpfLab5.csproj", "{D0F5622F-588A-4C78-87ED-D1FC86B673E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{BDB30ABA-6EC2-47AC-9FC1-C004CE396BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB30ABA-6EC2-47AC-9FC1-C004CE396BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB30ABA-6EC2-47AC-9FC1-C004CE396BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F5622F-588A-4C78-87ED-D1FC86B673E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F5622F-588A-4C78-87ED-D1FC86B673E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F5622F-588A-4C78-87ED-D1FC86B673E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F5622F-588A-4C78-87ED-D1FC86B673E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{FD298E91-D185-49A0-8F91-37560710D7B8} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
 		{63505B3F-592D-478D-8248-FA6DF2497578} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
 		{BDB30ABA-6EC2-47AC-9FC1-C004CE396BC5} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
+		{D0F5622F-588A-4C78-87ED-D1FC86B673E5} = {C5A7971D-4AE7-4312-A688-B636A4E8BB3B}
 	EndGlobalSection
 EndGlobal
