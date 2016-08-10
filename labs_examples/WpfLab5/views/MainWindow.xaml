@@ -1,0 +1,56 @@
+﻿<Window x:Class="WpfLab5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLab5"
+        mc:Ignorable="d"
+        Title="Students lab" Height="647.066" Width="595.101" Initialized="Window_Initialized" Activated="Window_Activated">
+    <Window.Resources>
+        <Style x:Key="ViewBoxFields1" TargetType="{x:Type Viewbox}"/>
+    </Window.Resources>
+    <Canvas Height="660" Margin="0,-23,-8,-20" VerticalAlignment="Bottom">
+        <StackPanel Orientation="Vertical" Height="345" Canvas.Left="328" Canvas.Top="122" Width="257" RenderTransformOrigin="0.493,0.496">
+            <Button x:Name="createButton" HorizontalAlignment="Right" Width="215" Height="53" Content="Create" FontSize="36" RenderTransformOrigin="0.494,4.751" Click="createButton_Click" Margin="-2,0,35,0"   />
+            <Button x:Name="DeleteButton" HorizontalAlignment="Right" Width="215" Height="54" Content="Delete" FontSize="36" Margin="-2,0,35,0" Click="DeleteButton_Click" />
+            <Button x:Name="UpdateButton" HorizontalAlignment="Right" Width="215" Height="58" Content="Update" FontSize="36" RenderTransformOrigin="0.517,-3.873" Margin="0,0,35,0" Click="UpdateButton_Click" />
+            <Button x:Name="SaveButton" HorizontalAlignment="Right" Width="215" Height="59" Content="Save" FontSize="36" Margin="0,0,35,0" Click="SaveButton_Click" />
+            <Button x:Name="ReloadButton" HorizontalAlignment="Right" Width="215" Height="57" Content="Refresh" FontSize="36" Click="ReloadButton_Click" Margin="0,0,35,0" />
+        </StackPanel>
+        <TextBox x:Name="InfoBox" IsReadOnly="true" FontSize="18" HorizontalAlignment="Left" Height="93" TextWrapping="Wrap" VerticalAlignment="Top" Width="566" TextChanged="InfoBox_TextChanged" Canvas.Left="10" Canvas.Top="29"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="187" VerticalAlignment="Top" Width="313" SelectionChanged="listBox_SelectionChanged" Canvas.Left="10" Canvas.Top="122"/>
+        <Viewbox x:Name="NameView" Style="{DynamicResource ViewBoxFields1}" Height="128" Canvas.Left="10" Canvas.Top="290" Width="313" >
+            <Grid x:Name="NameGrid" Height="104" Width="332">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="69*"/>
+                    <ColumnDefinition Width="263*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="22*"/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="Name_TextBox" IsReadOnly="true" FontSize="20" Margin="0,21,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="332" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="2" TextChanged="Name_TextBox_TextChanged" />
+                <Label x:Name="Namelabel" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.615" Width="165" Grid.RowSpan="2" Height="40" FontStyle="Italic" FontSize="20" Grid.ColumnSpan="2"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox x:Name="SurnameView" RenderTransformOrigin="0.493,0.554" Style="{DynamicResource ViewBoxFields1}" Height="122" Canvas.Left="10" Canvas.Top="392" Width="313">
+            <Grid x:Name="SurnameGrid" Height="89" Width="292">
+                <TextBox x:Name="Surname_TextBox" FontSize="20" IsReadOnly="true" HorizontalAlignment="Right" Height="50" Margin="0,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" />
+                <Label x:Name="Surnamelabel" Content="Surname:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.615" Width="119" Height="40" FontStyle="Italic" FontSize="18"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox x:Name="GardeView" Height="51" Canvas.Left="412" Canvas.Top="546" Width="164" >
+            <Grid x:Name="GradeGrid" Height="71" Width="180" Canvas.Left="328" Canvas.Top="468">
+                <Label x:Name="GradeLabel" Content="Grade:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" FontStyle="Italic" FontSize="26" Height="68"/>
+                <TextBox x:Name="GradeTextBox" HorizontalAlignment="Left" Height="68" Margin="98,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" IsReadOnly="True" TextChanged="GradeTextBox_TextChanged" FontSize="22" FontWeight="Bold"/>
+            </Grid>
+        </Viewbox>
+        <CheckBox x:Name="checkBudget" FontSize="20" IsEnabled="False" Content="On Budget" HorizontalAlignment="Left" RenderTransformOrigin="0.216,2.188" Height="34" VerticalAlignment="Top" Checked="checkBudget_Checked" Canvas.Left="449" Canvas.Top="602" Width="127"/>
+        <Viewbox x:Name="Group" RenderTransformOrigin="0.493,0.554" Style="{DynamicResource ViewBoxFields1}" Height="122" Canvas.Left="10" Canvas.Top="514" Width="313">
+            <Grid x:Name="SurnameGrid1" Height="85" Width="285">
+                <Label x:Name="GroupLabel" Content="Group:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.615" Width="91" Height="40" FontStyle="Italic" FontSize="18"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="0,45,0,0" VerticalAlignment="Top" Width="282" Height="40" SelectionChanged="comboBox_SelectionChanged"/>
+            </Grid>
+        </Viewbox>
+    </Canvas>
+</Window>

@@ -9,7 +9,7 @@ namespace lab4.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(lab4.DbcontextSt context)

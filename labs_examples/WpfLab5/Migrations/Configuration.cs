@@ -9,7 +9,7 @@ namespace WpfLab5.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WpfLab5.DbcontextSt context)

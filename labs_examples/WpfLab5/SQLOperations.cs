@@ -218,6 +218,32 @@ namespace WpfLab5
             }
         }
 
+        internal static void UpdateStudentFull(int numA, Students stB, string groupname)
+        {
+            using (var db = new DbcontextSt())
+            {
+                Students studentA = FindStudent(numA);
+                Students studentB = stB;
+                int groupID = FindGroupId(groupname);
+
+                if (groupID > 0)
+                {
+                    studentB = new Students(null, stB.Name, stB.Surname, stB.Number, stB.AvgGrade, stB.budgetStatus, groupID);
+                }
+
+                else
+                {
+                    studentB = new Students(new Group(groupname), stB.Name, stB.Surname, stB.Number, stB.AvgGrade, stB.budgetStatus);
+                }
+                //studentA = studentB;
+                RemoveStudent(numA);
+                db.Students.Add(studentB);
+                db.SaveChanges();
+                InfoSQL = string.Format("Updated {0}, new group: {1}", studentA, groupname);
+            }
+        }
+
+
         internal static void UpdateStudent2(int num, string groupname)
         {
 
