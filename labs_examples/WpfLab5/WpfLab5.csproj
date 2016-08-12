@@ -69,6 +69,10 @@
     <Compile Include="DbcontextSt.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Migrations\201608121810565_st1.cs" />
+    <Compile Include="Migrations\201608121810565_st1.Designer.cs">
+      <DependentUpon>201608121810565_st1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SQLOperations.cs" />
     <Compile Include="Students.cs" />
@@ -106,6 +110,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201608121810565_st1.resx">
+      <DependentUpon>201608121810565_st1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
