@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 6 jscript</title>
+</head>
+
+<body>
+    <br> First number:
+    <br>
+    <input type="text" id="first" /><br> Second number:
+    <br>
+    <input type="text" id="second" /><br>
+    <br>
+        <input type="button" name="plus" value="+" onClick="plus()" />
+        <input type="button" name="minus" value="-" onclick="minus()" />
+        <input type="button" name="multiple" value="*" onclick="multiple1()" />
+        <input type="button" name="delim" value="/" onclick="delim()" />
+        <input type="button" name="reset" value="Reset" onclick="reset2"/>
+    <br>
+    <textarea readonly id="result">
+    </textarea>
+    <br>
+    <textarea rows="5" cols="50" name="description" readonly style="5">
+This something like javascript calc
+Please enter first and second numbers, then you will see the result in the bottom text element
+ </textarea>
+</body>
+
+    <script>
+var first = document.getElementById("first").value;
+var second = document.getElementById("second").value;
+var result = document.getElementById("result").value;
+
+function plus() {
+var first = document.getElementById("first").value;
+var second = document.getElementById("second").value;
+document.getElementById("result").value = parseFloat(first)+parseFloat(second);
+}
+
+function minus() {
+var first = document.getElementById("first").value;
+var second = document.getElementById("second").value;
+document.getElementById("result").value =first-second;
+}
+
+var multiple1 = function() {
+var first = document.getElementById("first").value;
+var second = document.getElementById("second").value;
+document.getElementById("result").value=parseFloat(first)*parseFloat(second);
+}
+
+var delim = function() {
+var first = document.getElementById("first").value;
+var second = document.getElementById("second").value;
+document.getElementById("result").value=first/second;
+}
+
+function reset2() {
+document.getElementById("first").value=null;
+document.getElementById("second").value=null;
+document.getElementById("result").value=null;
+}
+
+</script>
+</html>
+<style 5>
+    body {
+        background-color: lightblue;
+    }
+    
+    h1 {
+        color: white;
+        text-align: center;
+    }
+    
+    p {
+        font-family: verdana;
+        font-size: 20px;
+    }
+    
+    textarea {
+        font-family: verdana;
+        font-size: 20px;
+        background-color: lightgrey;
+        text-emphasis-color: darkred;
+    }
+    
+    text {
+        font-family: verdana;
+        font-size: 20px;
+        background-color: lightgrey;
+        text-emphasis-color: darkred;
+    }
+</style>
